@@ -1,0 +1,16 @@
+{
+    "name": "silencedis/multi-source-mapper",
+    "description": "Multi-source Data Mapper",
+    "type": "library",
+    "require": {
+        "php": ">=7.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yurii Slobodeniuk",
+            "email": "silencedis@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
