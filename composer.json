@@ -12,5 +12,9 @@
             "email": "silencedis@gmail.com"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^6.0.0",
+        "silencedis/phpunit-mock-helper": "dev-master"
+    }
 }
