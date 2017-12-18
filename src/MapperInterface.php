@@ -9,7 +9,5 @@ namespace SilenceDis\MultiSourceMapper;
  */
 interface MapperInterface
 {
-    public function registerSource(SourceInterface $source);
-    
     public function map();
 }
