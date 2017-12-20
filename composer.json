@@ -19,8 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SilenceDis\\MultiSourceMapper\\": "src",
-            "SilenceDis\\MultiSourceMapperInterface\\": "MsmInterface"
+            "SilenceDis\\MultiSourceMapper\\": "src"
         }
     },
     "autoload-dev": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace SilenceDis\MultiSourceMapperInterface\Source;
+namespace SilenceDis\MultiSourceMapper\MSMInterface\Source;
 
 /**
  * Interface SourceInterface
