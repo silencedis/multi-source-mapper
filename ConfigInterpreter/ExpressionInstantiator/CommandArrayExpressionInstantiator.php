@@ -14,37 +14,33 @@ use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\SyntaxTreeBuilde
  */
 class CommandArrayExpressionInstantiator implements ExpressionInstantiatorInterface
 {
-    private $syntaxTreeBuilder;
-    
-    public function __construct(SyntaxTreeBuilderInterface $syntaxTreeBuilder)
-    {
-        $this->syntaxTreeBuilder = $syntaxTreeBuilder;
-    }
-    
     public function recognizes($value): bool
     {
         if (!is_array($value)) {
             return false;
         }
-        
+
         $commandKeys = ['_command', '!'];
-        $arrayKeys   = array_keys($value);
-        
-        $filteredArrayKeys = array_filter($arrayKeys, function ($value) use ($commandKeys) {
-            return in_array($value, $commandKeys);
-        });
-        
+        $arrayKeys = array_keys($value);
+
+        $filteredArrayKeys = array_filter(
+            $arrayKeys,
+            function ($value) use ($commandKeys) {
+                return in_array($value, $commandKeys);
+            }
+        );
+
         return !empty($filteredArrayKeys);
     }
-    
-    public function instantiate($value): ExpressionInterface
+
+    public function instantiate($value, SyntaxTreeBuilderInterface $builder): ExpressionInterface
     {
         $rebuildedArray = [];
-        
+
         foreach ($value as $k => $v) {
-            $rebuildedArray[$k] = $this->syntaxTreeBuilder->instantiateExpression($v);
+            $rebuildedArray[$k] = $builder->build($v);
         }
-        
+
         return new CommandArrayExpression($rebuildedArray);
     }
 }

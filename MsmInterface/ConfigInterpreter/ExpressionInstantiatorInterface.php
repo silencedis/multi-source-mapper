@@ -10,6 +10,15 @@ namespace SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter;
 interface ExpressionInstantiatorInterface
 {
     public function recognizes($value): bool;
-    
-    public function instantiate($value): ExpressionInterface;
+
+    /**
+     * Instantiates an instance of {@see ExpressionInterface}.
+     *
+     * @param mixed $value A value to create an expression based on it.
+     * @param SyntaxTreeBuilderInterface $builder An instance of {@see SyntaxTreeBuilderInterface}.
+     * It may be used to delegate to it the value analysis and building internal expressions.
+     *
+     * @return ExpressionInterface
+     */
+    public function instantiate($value, SyntaxTreeBuilderInterface $builder): ExpressionInterface;
 }

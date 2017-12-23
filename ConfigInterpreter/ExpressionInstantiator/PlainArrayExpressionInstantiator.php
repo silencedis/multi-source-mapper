@@ -14,26 +14,19 @@ use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\SyntaxTreeBuilde
  */
 class PlainArrayExpressionInstantiator implements ExpressionInstantiatorInterface
 {
-    private $syntaxTreeBuilder;
-    
-    public function __construct(SyntaxTreeBuilderInterface $syntaxTreeBuilder)
-    {
-        $this->syntaxTreeBuilder = $syntaxTreeBuilder;
-    }
-    
     public function recognizes($value): bool
     {
         return is_array($value);
     }
-    
-    public function instantiate($value): ExpressionInterface
+
+    public function instantiate($value, SyntaxTreeBuilderInterface $builder): ExpressionInterface
     {
         $rebuildedArray = [];
-        
+
         foreach ($value as $k => $v) {
-            $rebuildedArray[$k] = $this->syntaxTreeBuilder->instantiateExpression($v);
+            $rebuildedArray[$k] = $builder->build($v);
         }
-        
+
         return new PlainArrayExpression($rebuildedArray);
     }
 }
