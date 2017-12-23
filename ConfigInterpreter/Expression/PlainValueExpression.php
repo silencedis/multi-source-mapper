@@ -21,7 +21,5 @@ class PlainValueExpression extends AbstractExpression
     public function interpret(InterpreterContextInterface $context)
     {
         $context->replace($this, $this->value);
-
-        return $context->lookup($this);
     }
 }
