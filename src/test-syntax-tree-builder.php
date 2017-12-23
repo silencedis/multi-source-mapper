@@ -8,6 +8,8 @@ use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\PlainV
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContext;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilder\SyntaxTreeBuilder;
 
+require __DIR__.'/../vendor/autoload.php';
+
 $array = [
     '!' => 'from-source',
     'source' => 'translations',
@@ -29,8 +31,8 @@ $context = new InterpreterContext();
 
 $syntaxTreeBuilder = new SyntaxTreeBuilder();
 $syntaxTreeBuilder->registerInstantiator(new CommandStringExpressionInstantiator());
-$syntaxTreeBuilder->registerInstantiator(new CommandArrayExpressionInstantiator($syntaxTreeBuilder));
-$syntaxTreeBuilder->registerInstantiator(new PlainArrayExpressionInstantiator($syntaxTreeBuilder));
+$syntaxTreeBuilder->registerInstantiator(new CommandArrayExpressionInstantiator());
+$syntaxTreeBuilder->registerInstantiator(new PlainArrayExpressionInstantiator());
 $syntaxTreeBuilder->registerInstantiator(new PlainValueExpressionInstantiator());
 
 try {

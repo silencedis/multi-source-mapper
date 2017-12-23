@@ -29,7 +29,7 @@ class SyntaxTreeBuilder implements SyntaxTreeBuilderInterface
     {
         foreach ($this->instantiators as $instantiator) {
             if ($instantiator->recognizes($value)) {
-                return $instantiator->instantiate($value);
+                return $instantiator->instantiate($value, $this);
             }
         }
 
