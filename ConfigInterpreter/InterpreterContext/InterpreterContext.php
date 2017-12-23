@@ -13,12 +13,12 @@ use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\InterpreterConte
 class InterpreterContext implements InterpreterContextInterface
 {
     private $storage = [];
-    
+
     public function replace(ExpressionInterface $expression, $value)
     {
         $this->storage[$expression->getKey()] = $value;
     }
-    
+
     public function lookup(ExpressionInterface $expression)
     {
         return $this->storage[$expression->getKey()] ?? null;

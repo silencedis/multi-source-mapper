@@ -12,20 +12,20 @@ use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\InterpreterConte
 class CommandStringExpression extends AbstractExpression
 {
     private $string;
-    
+
     public function __construct(string $string)
     {
         $this->string = $string;
     }
-    
+
     public function interpret(InterpreterContextInterface $context)
     {
         $result = $this->runCommand($this->string);
         $context->replace($this, $result);
     }
-    
+
     private function runCommand(string $string)
     {
-        return '[STRING_COMMAND_HAS_BEEN_PERFORMED]' . $string;
+        return '[STRING_COMMAND_HAS_BEEN_PERFORMED]'.$string;
     }
 }

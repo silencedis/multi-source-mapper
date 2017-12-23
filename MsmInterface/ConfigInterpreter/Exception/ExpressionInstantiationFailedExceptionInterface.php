@@ -9,5 +9,5 @@ namespace SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\Exception;
  */
 interface ExpressionInstantiationFailedExceptionInterface
 {
-    
+
 }

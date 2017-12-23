@@ -18,7 +18,7 @@ class SyntaxTreeBuilder implements SyntaxTreeBuilderInterface
      * @var ExpressionInstantiatorInterface[]
      */
     private $instantiators = [];
-    
+
     /**
      * @param $value
      *
@@ -32,10 +32,10 @@ class SyntaxTreeBuilder implements SyntaxTreeBuilderInterface
                 return $instantiator->instantiate($value);
             }
         }
-        
+
         throw new ExpressionInstantiationFailedException();
     }
-    
+
     /**
      * @param \SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\ExpressionInstantiatorInterface $instantiator
      */

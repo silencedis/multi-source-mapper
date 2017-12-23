@@ -10,6 +10,6 @@ namespace SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter;
 interface InterpreterContextInterface
 {
     public function replace(ExpressionInterface $expression, $value);
-    
+
     public function lookup(ExpressionInterface $expression);
 }

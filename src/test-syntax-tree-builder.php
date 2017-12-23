@@ -9,16 +9,16 @@ use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\Interprete
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilder\SyntaxTreeBuilder;
 
 $array = [
-    '!'      => 'from-source',
+    '!' => 'from-source',
     'source' => 'translations',
-    'query'  => [
+    'query' => [
         'category' => '!parameters defaultCategory',
-        'message'  => 'Some Text and Parameter "{parameter1}" ({parameter2})',
-        'params'   => [
+        'message' => 'Some Text and Parameter "{parameter1}" ({parameter2})',
+        'params' => [
             'parameter1' => [
-                '!'      => 'from-source',
+                '!' => 'from-source',
                 'source' => 'api.json',
-                'query'  => 'some.raw.json.key',
+                'query' => 'some.raw.json.key',
             ],
             'parameter2' => '!source api.source some.new.api.key',
         ],
@@ -36,7 +36,7 @@ $syntaxTreeBuilder->registerInstantiator(new PlainValueExpressionInstantiator())
 try {
     $expression = $syntaxTreeBuilder->build($array);
 } catch (ExpressionInstantiationFailedException $e) {
-    echo PHP_EOL . PHP_EOL . "Failed to instantiate an expression.";
+    echo PHP_EOL.PHP_EOL."Failed to instantiate an expression.";
     exit;
 }
 
