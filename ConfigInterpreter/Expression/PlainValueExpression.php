@@ -11,15 +11,15 @@ use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\InterpreterConte
  */
 class PlainValueExpression extends AbstractExpression
 {
-    private $value;
+    private $expressionValue;
 
     public function __construct($value)
     {
-        $this->value = $value;
+        $this->expressionValue = $value;
     }
 
     public function interpret(InterpreterContextInterface $context)
     {
-        $context->replace($this, $this->value);
+        $context->replace($this, $this->expressionValue);
     }
 }

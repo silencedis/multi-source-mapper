@@ -2,7 +2,8 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\CommandStringExpression;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\StringCommandResolver;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\StringCommandExpression;
 use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\ExpressionInstantiatorInterface;
 use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\ExpressionInterface;
 use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\SyntaxTreeBuilderInterface;
@@ -22,6 +23,6 @@ class CommandStringExpressionInstantiator implements ExpressionInstantiatorInter
 
     public function instantiate($value, SyntaxTreeBuilderInterface $builder): ExpressionInterface
     {
-        return new CommandStringExpression($value);
+        return new StringCommandExpression($value, new StringCommandResolver());
     }
 }

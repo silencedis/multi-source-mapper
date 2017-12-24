@@ -11,18 +11,18 @@ use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\InterpreterConte
  */
 class PlainArrayExpression extends AbstractExpression
 {
-    private $array;
+    private $expressionValue;
 
     public function __construct(array $array)
     {
-        $this->array = $array;
+        $this->expressionValue = $array;
     }
 
     public function interpret(InterpreterContextInterface $context)
     {
         $interpretedArray = [];
 
-        foreach ($this->array as $key => $expression) {
+        foreach ($this->expressionValue as $key => $expression) {
             $expression->interpret($context);
             $interpretedArray[$key] = $context->lookup($expression);
         }

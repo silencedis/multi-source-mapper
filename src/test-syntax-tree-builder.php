@@ -6,18 +6,18 @@ use SilenceDis\MultiSourceMapper\Mapper\ObjectMapper;
 require __DIR__.'/../vendor/autoload.php';
 
 $mapConfig = [
-    '!' => 'from-source',
+    '!' => 'get-source-value',
     'source' => 'translations',
     'query' => [
-        'category' => '!parameters defaultCategory',
+        'category' => '!get-source-value app.params defaultCategory',
         'message' => 'Some Text and Parameter "{parameter1}" ({parameter2})',
         'params' => [
             'parameter1' => [
-                '!' => 'from-source',
+                '!' => 'get-source-value',
                 'source' => 'api.json',
                 'query' => 'some.raw.json.key',
             ],
-            'parameter2' => '!source api.source some.new.api.key',
+            'parameter2' => '!get-source-value api.source some.new.api.key',
         ],
     ],
 ];
@@ -31,4 +31,5 @@ try {
     exit;
 }
 
+echo PHP_EOL.PHP_EOL;
 print_r(json_encode($result, JSON_PRETTY_PRINT));

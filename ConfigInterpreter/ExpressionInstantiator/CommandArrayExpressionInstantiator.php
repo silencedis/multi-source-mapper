@@ -2,7 +2,9 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\CommandArrayExpression;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\ArrayCommandResolver;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\ArrayCommandExpression;
+use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\Exception\ExpressionInstantiationFailedExceptionInterface;
 use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\ExpressionInstantiatorInterface;
 use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\ExpressionInterface;
 use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\SyntaxTreeBuilderInterface;
@@ -33,6 +35,12 @@ class CommandArrayExpressionInstantiator implements ExpressionInstantiatorInterf
         return !empty($filteredArrayKeys);
     }
 
+    /**
+     * @param mixed $value
+     * @param SyntaxTreeBuilderInterface $builder
+     * @return ExpressionInterface
+     * @throws ExpressionInstantiationFailedExceptionInterface
+     */
     public function instantiate($value, SyntaxTreeBuilderInterface $builder): ExpressionInterface
     {
         $rebuildedArray = [];
@@ -41,6 +49,6 @@ class CommandArrayExpressionInstantiator implements ExpressionInstantiatorInterf
             $rebuildedArray[$k] = $builder->build($v);
         }
 
-        return new CommandArrayExpression($rebuildedArray);
+        return new ArrayCommandExpression($rebuildedArray, new ArrayCommandResolver());
     }
 }

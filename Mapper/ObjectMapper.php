@@ -2,7 +2,6 @@
 
 namespace SilenceDis\MultiSourceMapper\Mapper;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\Exception\ExpressionInstantiationFailedException;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\CommandArrayExpressionInstantiator;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\CommandStringExpressionInstantiator;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\PlainArrayExpressionInstantiator;
@@ -10,6 +9,8 @@ use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\PlainV
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContext;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilder\SyntaxTreeBuilder;
 use SilenceDis\MultiSourceMapper\Mapper\Exception\MapperException;
+use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\Exception\ExpressionInstantiationFailedExceptionInterface;
+use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\SyntaxTreeBuilderInterface;
 use SilenceDis\MultiSourceMapper\MsmInterface\Mapper\MapperInterface;
 
 /**
@@ -34,20 +35,28 @@ class ObjectMapper implements MapperInterface
     {
         $context = new InterpreterContext();
 
-        $syntaxTreeBuilder = new SyntaxTreeBuilder();
-        $syntaxTreeBuilder->registerInstantiator(new CommandStringExpressionInstantiator());
-        $syntaxTreeBuilder->registerInstantiator(new CommandArrayExpressionInstantiator());
-        $syntaxTreeBuilder->registerInstantiator(new PlainArrayExpressionInstantiator());
-        $syntaxTreeBuilder->registerInstantiator(new PlainValueExpressionInstantiator());
+        $syntaxTreeBuilder = $this->prepareSyntaxTreeBuilder();
 
         try {
             $expression = $syntaxTreeBuilder->build($this->mapConfig);
-        } catch (ExpressionInstantiationFailedException $e) {
+        } catch (ExpressionInstantiationFailedExceptionInterface $e) {
             throw new MapperException('Failed to instantiate an expression');
         }
 
         $expression->interpret($context);
 
         return $context->lookup($expression);
+    }
+
+    private function prepareSyntaxTreeBuilder(): SyntaxTreeBuilderInterface
+    {
+        $syntaxTreeBuilder = new SyntaxTreeBuilder();
+
+        $syntaxTreeBuilder->registerInstantiator(new CommandStringExpressionInstantiator());
+        $syntaxTreeBuilder->registerInstantiator(new CommandArrayExpressionInstantiator());
+        $syntaxTreeBuilder->registerInstantiator(new PlainArrayExpressionInstantiator());
+        $syntaxTreeBuilder->registerInstantiator(new PlainValueExpressionInstantiator());
+
+        return $syntaxTreeBuilder;
     }
 }

@@ -7,7 +7,6 @@ namespace SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\Exception;
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-interface ExpressionInstantiationFailedExceptionInterface
+interface ExpressionInstantiationFailedExceptionInterface extends \Throwable
 {
-
 }
