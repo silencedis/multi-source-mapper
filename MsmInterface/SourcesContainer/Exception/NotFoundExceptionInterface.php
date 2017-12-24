@@ -1,8 +1,8 @@
 <?php
 
-namespace SilenceDis\MultiSourceMapper\MSMInterface\SourcesContainer\Exception;
+namespace SilenceDis\MultiSourceMapper\MsmInterface\SourcesContainer\Exception;
 
-use SilenceDis\MultiSourceMapper\MSMInterface\SourcesContainer\SourceContainerInterface;
+use SilenceDis\MultiSourceMapper\MsmInterface\SourcesContainer\SourceContainerInterface;
 
 /**
  * Interface NotFoundExceptionInterface

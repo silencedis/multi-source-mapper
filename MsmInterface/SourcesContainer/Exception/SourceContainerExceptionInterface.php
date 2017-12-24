@@ -1,12 +1,12 @@
 <?php
 
-namespace SilenceDis\MultiSourceMapper\MSMInterface\SourcesContainer\Exception;
+namespace SilenceDis\MultiSourceMapper\MsmInterface\SourcesContainer\Exception;
 
 /**
  * Interface SourceContainerExceptionInterface
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-interface SourceContainerExceptionInterface
+interface SourceContainerExceptionInterface extends \Throwable
 {
 }

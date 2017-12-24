@@ -1,16 +1,11 @@
 <?php
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\Exception\ExpressionInstantiationFailedException;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\CommandArrayExpressionInstantiator;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\CommandStringExpressionInstantiator;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\PlainArrayExpressionInstantiator;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\PlainValueExpressionInstantiator;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContext;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilder\SyntaxTreeBuilder;
+use SilenceDis\MultiSourceMapper\Mapper\Exception\MapperException;
+use SilenceDis\MultiSourceMapper\Mapper\ObjectMapper;
 
 require __DIR__.'/../vendor/autoload.php';
 
-$array = [
+$mapConfig = [
     '!' => 'from-source',
     'source' => 'translations',
     'query' => [
@@ -27,28 +22,13 @@ $array = [
     ],
 ];
 
-$context = new InterpreterContext();
-
-$syntaxTreeBuilder = new SyntaxTreeBuilder();
-$syntaxTreeBuilder->registerInstantiator(new CommandStringExpressionInstantiator());
-$syntaxTreeBuilder->registerInstantiator(new CommandArrayExpressionInstantiator());
-$syntaxTreeBuilder->registerInstantiator(new PlainArrayExpressionInstantiator());
-$syntaxTreeBuilder->registerInstantiator(new PlainValueExpressionInstantiator());
+$mapper = new ObjectMapper($mapConfig);
 
 try {
-    $expression = $syntaxTreeBuilder->build($array);
-} catch (ExpressionInstantiationFailedException $e) {
-    echo PHP_EOL.PHP_EOL."Failed to instantiate an expression.";
+    $result = $mapper->map();
+} catch (MapperException $e) {
+    echo PHP_EOL.PHP_EOL.$e->getMessage().PHP_EOL;
     exit;
 }
 
-print_r($expression);
-echo PHP_EOL;
-echo '---------------------------------------------------';
-echo PHP_EOL;
-
-$expression->interpret($context);
-$result = $context->lookup($expression);
-
-print_r($result);
-//print_r(json_encode($result, JSON_PRETTY_PRINT));
+print_r(json_encode($result, JSON_PRETTY_PRINT));
