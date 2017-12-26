@@ -7,6 +7,13 @@ use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\AbstractExpression
 use SilenceDis\PHPUnitMockHelper\MockHelper;
 use SilenceDis\ProtectedMembersAccessor\ProtectedMembersAccessor;
 
+/**
+ * Class AbstractExpressionTest
+ *
+ * @author Yurii Slobodeniuk <silencedis@gmail.com>
+ *
+ * @coversDefaultClass \SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\AbstractExpression
+ */
 class AbstractExpressionTest extends TestCase
 {
     /**
@@ -24,6 +31,8 @@ class AbstractExpressionTest extends TestCase
     }
 
     /**
+     * @covers ::getKey
+     *
      * @throws \SilenceDis\PHPUnitMockHelper\Exception\InvalidMockTypeException
      * @throws \SilenceDis\ProtectedMembersAccessor\Exception\ProtectedMembersAccessException
      */
@@ -42,6 +51,8 @@ class AbstractExpressionTest extends TestCase
     }
 
     /**
+     * @covers ::getKey()
+     *
      * @throws \SilenceDis\PHPUnitMockHelper\Exception\InvalidMockTypeException
      * @throws \SilenceDis\ProtectedMembersAccessor\Exception\ProtectedMembersAccessException
      */

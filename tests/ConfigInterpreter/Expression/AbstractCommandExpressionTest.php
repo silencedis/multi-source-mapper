@@ -8,6 +8,13 @@ use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\CommandResolver\
 use SilenceDis\PHPUnitMockHelper\MockHelper;
 use SilenceDis\ProtectedMembersAccessor\ProtectedMembersAccessor;
 
+/**
+ * Class AbstractCommandExpressionTest
+ *
+ * @author Yurii Slobodeniuk <silencedis@gmail.com>
+ *
+ * @coversDefaultClass \SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\AbstractCommandExpression
+ */
 class AbstractCommandExpressionTest extends TestCase
 {
     /**
@@ -29,6 +36,8 @@ class AbstractCommandExpressionTest extends TestCase
     }
 
     /**
+     * @covers ::getCommandResolver
+     *
      * @throws \SilenceDis\PHPUnitMockHelper\Exception\InvalidMockTypeException
      * @throws \SilenceDis\ProtectedMembersAccessor\Exception\ProtectedMembersAccessException
      */
@@ -45,9 +54,14 @@ class AbstractCommandExpressionTest extends TestCase
             AbstractCommandExpression::class,
             [
                 'mockType' => MockHelper::MOCK_TYPE_ABSTRACT,
-                'constructor' => true,
-                'constructorArgs' => [$commandResolver],
             ]
+        );
+
+        $this->membersAccessor->setProtectedProperty(
+            AbstractCommandExpression::class,
+            $testExpression,
+            'commandResolver',
+            $commandResolver
         );
 
         $closure = $this->membersAccessor->getProtectedMethod(
@@ -57,6 +71,7 @@ class AbstractCommandExpressionTest extends TestCase
         );
 
         $actualResult = $closure();
+
         $this->assertEquals(
             $commandResolver,
             $actualResult,
