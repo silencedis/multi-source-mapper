@@ -20,13 +20,13 @@ class ArrayCommandResolver implements CommandResolverInterface
     public function resolve($commandConfig): CommandInterface
     {
         $this->checkCommandConfig($commandConfig);
-
+        
         $commandName = $commandConfig['!'] ?? $commandConfig['_command'] ?? null;
-
+        
         if ($commandName === null) {
             throw new CommandResolverException();
         }
-
+        
         switch ($commandName) {
             case 'get-source-value':
                 return new GetSourceValueCommand($commandConfig['source'], $commandConfig['query']);
@@ -34,9 +34,10 @@ class ArrayCommandResolver implements CommandResolverInterface
                 throw new CommandResolverException();
         }
     }
-
+    
     /**
      * @param array $commandConfig
+     *
      * @throws CommandResolverException
      */
     private function checkCommandConfig($commandConfig): void

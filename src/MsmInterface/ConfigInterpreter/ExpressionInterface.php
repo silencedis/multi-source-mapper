@@ -10,6 +10,6 @@ namespace SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter;
 interface ExpressionInterface
 {
     public function interpret(InterpreterContextInterface $contest);
-
+    
     public function getKey(): string;
 }

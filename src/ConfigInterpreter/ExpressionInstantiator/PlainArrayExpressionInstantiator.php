@@ -18,15 +18,15 @@ class PlainArrayExpressionInstantiator implements ExpressionInstantiatorInterfac
     {
         return is_array($value);
     }
-
+    
     public function instantiate($value, SyntaxTreeBuilderInterface $builder): ExpressionInterface
     {
         $rebuildedArray = [];
-
+        
         foreach ($value as $k => $v) {
             $rebuildedArray[$k] = $builder->build($v);
         }
-
+        
         return new PlainArrayExpression($rebuildedArray);
     }
 }

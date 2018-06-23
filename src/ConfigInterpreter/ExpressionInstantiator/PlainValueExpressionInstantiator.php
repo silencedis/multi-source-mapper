@@ -18,7 +18,7 @@ class PlainValueExpressionInstantiator implements ExpressionInstantiatorInterfac
     {
         return true;
     }
-
+    
     public function instantiate($value, SyntaxTreeBuilderInterface $builder): ExpressionInterface
     {
         return new PlainValueExpression($value);

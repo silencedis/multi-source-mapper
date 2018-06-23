@@ -22,7 +22,7 @@ interface SourceContainerInterface
      * @return SourceInterface Source
      */
     public function get($id): SourceInterface;
-
+    
     /**
      * Returns true if the container can return an entry for the given identifier.
      * Returns false otherwise.

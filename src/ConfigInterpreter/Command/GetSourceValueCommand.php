@@ -19,9 +19,10 @@ class GetSourceValueCommand implements CommandInterface
      * @var mixed
      */
     private $query;
-
+    
     /**
      * GetSourceValueCommand constructor.
+     *
      * @param string $source Source name.
      * @param mixed $query Value query.
      */
@@ -30,7 +31,7 @@ class GetSourceValueCommand implements CommandInterface
         $this->source = $source;
         $this->query = $query;
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -39,16 +40,16 @@ class GetSourceValueCommand implements CommandInterface
         $contents = [
             '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',
             self::class,
-            '[SOURCE]: '.$this->source,
+            '[SOURCE]: ' . $this->source,
             '-------------------------',
-            '[QUERY]: '.json_encode($this->query, JSON_PRETTY_PRINT),
+            '[QUERY]: ' . json_encode($this->query, JSON_PRETTY_PRINT),
             '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<',
         ];
-
+        
         echo PHP_EOL;
         echo implode(PHP_EOL, $contents);
         echo PHP_EOL;
-
-        return "$this->source: ".uniqid();
+        
+        return "$this->source: " . uniqid();
     }
 }

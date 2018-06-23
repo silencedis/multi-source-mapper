@@ -21,12 +21,12 @@ use SilenceDis\MultiSourceMapper\MsmInterface\Mapper\MapperInterface;
 class ObjectMapper implements MapperInterface
 {
     private $mapConfig;
-
+    
     public function __construct($mapConfig)
     {
         $this->mapConfig = $mapConfig;
     }
-
+    
     /**
      * @return mixed
      * @throws MapperException
@@ -34,29 +34,29 @@ class ObjectMapper implements MapperInterface
     public function map()
     {
         $context = new InterpreterContext();
-
+        
         $syntaxTreeBuilder = $this->prepareSyntaxTreeBuilder();
-
+        
         try {
             $expression = $syntaxTreeBuilder->build($this->mapConfig);
         } catch (ExpressionInstantiationFailedExceptionInterface $e) {
             throw new MapperException('Failed to instantiate an expression');
         }
-
+        
         $expression->interpret($context);
-
+        
         return $context->lookup($expression);
     }
-
+    
     private function prepareSyntaxTreeBuilder(): SyntaxTreeBuilderInterface
     {
         $syntaxTreeBuilder = new SyntaxTreeBuilder();
-
+        
         $syntaxTreeBuilder->registerInstantiator(new CommandStringExpressionInstantiator());
         $syntaxTreeBuilder->registerInstantiator(new CommandArrayExpressionInstantiator());
         $syntaxTreeBuilder->registerInstantiator(new PlainArrayExpressionInstantiator());
         $syntaxTreeBuilder->registerInstantiator(new PlainValueExpressionInstantiator());
-
+        
         return $syntaxTreeBuilder;
     }
 }

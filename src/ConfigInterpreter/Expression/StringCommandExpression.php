@@ -17,9 +17,10 @@ class StringCommandExpression extends AbstractCommandExpression
      * @var string
      */
     private $expressionValue;
-
+    
     /**
      * StringCommandExpression constructor.
+     *
      * @param string $string
      * @param CommandResolverInterface $commandResolver
      */
@@ -28,9 +29,10 @@ class StringCommandExpression extends AbstractCommandExpression
         parent::__construct($commandResolver);
         $this->expressionValue = $string;
     }
-
+    
     /**
      * @param InterpreterContextInterface $context
+     *
      * @throws CommandResolverExceptionInterface
      */
     public function interpret(InterpreterContextInterface $context)
@@ -38,16 +40,17 @@ class StringCommandExpression extends AbstractCommandExpression
         $result = $this->runCommand($this->expressionValue);
         $context->replace($this, $result);
     }
-
+    
     /**
      * @param string $commandConfig
+     *
      * @return mixed
      * @throws CommandResolverExceptionInterface
      */
     private function runCommand(string $commandConfig)
     {
         $command = $this->getCommandResolver()->resolve($commandConfig);
-
+        
         return $command->execute();
     }
 }

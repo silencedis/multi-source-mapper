@@ -13,15 +13,15 @@ use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\InterpreterConte
 abstract class AbstractExpression implements ExpressionInterface
 {
     private $key = null;
-
+    
     abstract function interpret(InterpreterContextInterface $context);
-
+    
     public function getKey(): string
     {
         if ($this->key === null) {
             $this->key = uniqid();
         }
-
+        
         return $this->key;
     }
 }

@@ -25,7 +25,7 @@ class AbstractCommandExpressionTest extends TestCase
      * @var ProtectedMembersAccessor
      */
     private $membersAccessor;
-
+    
     /**
      * @inheritDoc
      */
@@ -34,7 +34,7 @@ class AbstractCommandExpressionTest extends TestCase
         $this->mockHelper = new MockHelper($this);
         $this->membersAccessor = new ProtectedMembersAccessor();
     }
-
+    
     /**
      * @covers ::getCommandResolver
      *
@@ -49,29 +49,29 @@ class AbstractCommandExpressionTest extends TestCase
                 'mockType' => MockHelper::MOCK_TYPE_ABSTRACT,
             ]
         );
-
+        
         $testExpression = $this->mockHelper->mockObject(
             AbstractCommandExpression::class,
             [
                 'mockType' => MockHelper::MOCK_TYPE_ABSTRACT,
             ]
         );
-
+        
         $this->membersAccessor->setProtectedProperty(
             AbstractCommandExpression::class,
             $testExpression,
             'commandResolver',
             $commandResolver
         );
-
+        
         $closure = $this->membersAccessor->getProtectedMethod(
             AbstractCommandExpression::class,
             $testExpression,
             'getCommandResolver'
         );
-
+        
         $actualResult = $closure();
-
+        
         $this->assertEquals(
             $commandResolver,
             $actualResult,

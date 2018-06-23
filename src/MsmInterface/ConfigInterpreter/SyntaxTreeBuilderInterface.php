@@ -13,6 +13,7 @@ interface SyntaxTreeBuilderInterface
 {
     /**
      * @param $value
+     *
      * @return ExpressionInterface
      * @throws ExpressionInstantiationFailedExceptionInterface
      */

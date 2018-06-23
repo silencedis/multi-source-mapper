@@ -17,9 +17,10 @@ class ArrayCommandExpression extends AbstractCommandExpression
      * @var array
      */
     private $expressionValue;
-
+    
     /**
      * ArrayCommandExpression constructor.
+     *
      * @param array $array
      * @param CommandResolverInterface $commandResolver
      */
@@ -28,34 +29,36 @@ class ArrayCommandExpression extends AbstractCommandExpression
         $this->expressionValue = $array;
         parent::__construct($commandResolver);
     }
-
+    
     /**
      * @param InterpreterContextInterface $context
+     *
      * @throws CommandResolverExceptionInterface
      */
     public function interpret(InterpreterContextInterface $context)
     {
         $interpretedArray = [];
-
+        
         foreach ($this->expressionValue as $key => $expression) {
             $expression->interpret($context);
             $interpretedArray[$key] = $context->lookup($expression);
         }
-
+        
         $result = $this->runCommand($interpretedArray);
-
+        
         $context->replace($this, $result);
     }
-
+    
     /**
      * @param array $commandConfig
+     *
      * @return mixed
      * @throws CommandResolverExceptionInterface
      */
     private function runCommand(array $commandConfig)
     {
         $command = $this->getCommandResolver()->resolve($commandConfig);
-
+        
         return $command->execute();
     }
 }

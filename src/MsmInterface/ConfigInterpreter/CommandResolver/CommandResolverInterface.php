@@ -14,6 +14,7 @@ interface CommandResolverInterface
 {
     /**
      * @param $commandConfig
+     *
      * @return CommandInterface
      * @throws CommandResolverExceptionInterface
      */

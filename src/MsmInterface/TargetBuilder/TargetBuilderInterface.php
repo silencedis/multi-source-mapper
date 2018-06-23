@@ -10,6 +10,6 @@ namespace SilenceDis\MultiSourceMapper\MsmInterface\TargetBuilder;
 interface TargetBuilderInterface
 {
     public function setProperty(string $property, $value);
-
+    
     public function save();
 }

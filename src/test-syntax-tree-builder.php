@@ -3,7 +3,7 @@
 use SilenceDis\MultiSourceMapper\Mapper\Exception\MapperException;
 use SilenceDis\MultiSourceMapper\Mapper\ObjectMapper;
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 $mapConfig = [
     '!' => 'get-source-value',
@@ -27,9 +27,9 @@ $mapper = new ObjectMapper($mapConfig);
 try {
     $result = $mapper->map();
 } catch (MapperException $e) {
-    echo PHP_EOL.PHP_EOL.$e->getMessage().PHP_EOL;
+    echo PHP_EOL . PHP_EOL . $e->getMessage() . PHP_EOL;
     exit;
 }
 
-echo PHP_EOL.PHP_EOL;
+echo PHP_EOL . PHP_EOL;
 print_r(json_encode($result, JSON_PRETTY_PRINT));

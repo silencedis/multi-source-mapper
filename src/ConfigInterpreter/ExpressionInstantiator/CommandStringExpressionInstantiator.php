@@ -18,9 +18,9 @@ class CommandStringExpressionInstantiator implements ExpressionInstantiatorInter
     public function recognizes($value): bool
     {
         return is_string($value) &&
-            strncmp($value, '!', 1) === 0;
+               strncmp($value, '!', 1) === 0;
     }
-
+    
     public function instantiate($value, SyntaxTreeBuilderInterface $builder): ExpressionInterface
     {
         return new StringCommandExpression($value, new StringCommandResolver());

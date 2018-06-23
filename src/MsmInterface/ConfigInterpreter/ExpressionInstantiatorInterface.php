@@ -10,7 +10,7 @@ namespace SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter;
 interface ExpressionInstantiatorInterface
 {
     public function recognizes($value): bool;
-
+    
     /**
      * Instantiates an instance of {@see ExpressionInterface}.
      *
