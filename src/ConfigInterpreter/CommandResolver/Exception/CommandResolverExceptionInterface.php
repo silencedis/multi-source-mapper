@@ -3,7 +3,7 @@
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception;
 
 /**
- * Interface CommandResolverExceptionInterface
+ * The exception that may be thrown by {@see SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolverInterface}
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */

@@ -3,7 +3,7 @@
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception;
 
 /**
- * Class CommandResolverException
+ * Default implementation of {@see \SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception\CommandResolverExceptionInterface}
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */

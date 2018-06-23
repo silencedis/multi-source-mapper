@@ -7,18 +7,23 @@ use SilenceDis\MultiSourceMapper\ConfigInterpreter\Command\GetSourceValueCommand
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception\CommandResolverException;
 
 /**
- * Class ArrayCommandResolver
+ * Resolver of command based on an array value
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
 class ArrayCommandResolver implements CommandResolverInterface
 {
     /**
-     * @inheritDoc
+     * @inheritdoc
+     *
+     * @param array $commandConfig
+     * The parameter value must be an array.
+     *
      */
     public function resolve($commandConfig): CommandInterface
     {
-        $this->checkCommandConfig($commandConfig);
+        // todo Review the value verification
+        $this->verifyCommandConfig($commandConfig);
         
         $commandName = $commandConfig['!'] ?? $commandConfig['_command'] ?? null;
         
@@ -39,7 +44,7 @@ class ArrayCommandResolver implements CommandResolverInterface
      *
      * @throws CommandResolverException
      */
-    private function checkCommandConfig($commandConfig): void
+    private function verifyCommandConfig($commandConfig): void
     {
         if (!is_array($commandConfig)) {
             throw new CommandResolverException();
