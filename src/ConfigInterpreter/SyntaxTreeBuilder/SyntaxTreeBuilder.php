@@ -3,9 +3,9 @@
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilder;
 
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Exception\ExpressionInstantiationFailedException;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\ExpressionInstantiatorInterface;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\ExpressionInterface;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\SyntaxTreeBuilderInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiatorInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilderInterface;
 
 /**
  * Class SyntaxTreeBuilder
@@ -22,7 +22,7 @@ class SyntaxTreeBuilder implements SyntaxTreeBuilderInterface
     /**
      * @param $value
      *
-     * @return \SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\ExpressionInterface
+     * @return \SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInterface
      * @throws \SilenceDis\MultiSourceMapper\ConfigInterpreter\Exception\ExpressionInstantiationFailedException
      */
     public function build($value): ExpressionInterface
@@ -37,7 +37,7 @@ class SyntaxTreeBuilder implements SyntaxTreeBuilderInterface
     }
     
     /**
-     * @param \SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\ExpressionInstantiatorInterface $instantiator
+     * @param \SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiatorInterface $instantiator
      */
     public function registerInstantiator(ExpressionInstantiatorInterface $instantiator)
     {

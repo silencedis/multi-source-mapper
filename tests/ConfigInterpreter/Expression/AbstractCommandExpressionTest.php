@@ -3,8 +3,8 @@
 namespace SilenceDis\MultiSourceMapper\Test\ConfigInterpreter\Expression;
 
 use PHPUnit\Framework\TestCase;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolverInterface;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\AbstractCommandExpression;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\CommandResolver\CommandResolverInterface;
 use SilenceDis\PHPUnitMockHelper\MockHelper;
 use SilenceDis\ProtectedMembersAccessor\ProtectedMembersAccessor;
 

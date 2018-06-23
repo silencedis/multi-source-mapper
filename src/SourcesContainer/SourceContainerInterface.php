@@ -1,8 +1,9 @@
 <?php
 
-namespace SilenceDis\MultiSourceMapper\MsmInterface\SourcesContainer;
+namespace SilenceDis\MultiSourceMapper\SourcesContainer;
 
-use SilenceDis\MultiSourceMapper\MsmInterface\Source\SourceInterface;
+use SilenceDis\MultiSourceMapper\MsmInterface\SourcesContainer\Exception;
+use SilenceDis\MultiSourceMapper\Source\SourceInterface;
 
 /**
  * Interface SourceContainerInterface
@@ -16,10 +17,10 @@ interface SourceContainerInterface
      *
      * @param string $id Identifier of the source to look for.
      *
-     * @throws Exception\SourceContainerExceptionInterface
-     * @throws Exception\NotFoundExceptionInterface
+     * @throws \SilenceDis\MultiSourceMapper\SourcesContainer\Exception\SourceContainerExceptionInterface
+     * @throws \SilenceDis\MultiSourceMapper\SourcesContainer\Exception\NotFoundExceptionInterface
      *
-     * @return SourceInterface Source
+     * @return \SilenceDis\MultiSourceMapper\Source\SourceInterface Source
      */
     public function get($id): SourceInterface;
     

@@ -2,9 +2,9 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression;
 
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\CommandResolver\CommandResolverInterface;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\CommandResolver\Exception\CommandResolverExceptionInterface;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\InterpreterContextInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolverInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception\CommandResolverExceptionInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContextInterface;
 
 /**
  * Class StringCommandExpression
@@ -22,7 +22,7 @@ class StringCommandExpression extends AbstractCommandExpression
      * StringCommandExpression constructor.
      *
      * @param string $string
-     * @param CommandResolverInterface $commandResolver
+     * @param \SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolverInterface $commandResolver
      */
     public function __construct(string $string, CommandResolverInterface $commandResolver)
     {
@@ -33,7 +33,7 @@ class StringCommandExpression extends AbstractCommandExpression
     /**
      * @param InterpreterContextInterface $context
      *
-     * @throws CommandResolverExceptionInterface
+     * @throws \SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception\CommandResolverExceptionInterface
      */
     public function interpret(InterpreterContextInterface $context)
     {
@@ -45,7 +45,7 @@ class StringCommandExpression extends AbstractCommandExpression
      * @param string $commandConfig
      *
      * @return mixed
-     * @throws CommandResolverExceptionInterface
+     * @throws \SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception\CommandResolverExceptionInterface
      */
     private function runCommand(string $commandConfig)
     {

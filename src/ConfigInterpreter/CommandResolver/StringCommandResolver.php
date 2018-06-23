@@ -2,10 +2,9 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver;
 
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Command\CommandInterface;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Command\GetSourceValueCommand;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception\CommandResolverException;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\Command\CommandInterface;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\CommandResolver\CommandResolverInterface;
 
 /**
  * Class StringCommandResolver
@@ -17,7 +16,7 @@ class StringCommandResolver implements CommandResolverInterface
     /**
      * @param $commandConfig
      *
-     * @return CommandInterface
+     * @return \SilenceDis\MultiSourceMapper\ConfigInterpreter\Command\CommandInterface
      * @throws CommandResolverException
      */
     public function resolve($commandConfig): CommandInterface

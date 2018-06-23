@@ -1,6 +1,6 @@
 <?php
 
-namespace SilenceDis\MultiSourceMapper\MsmInterface\TargetBuilder;
+namespace SilenceDis\MultiSourceMapper\TargetBuilder;
 
 /**
  * Interface TargetBuilderInterface

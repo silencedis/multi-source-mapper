@@ -1,6 +1,6 @@
 <?php
 
-namespace SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter;
+namespace SilenceDis\MultiSourceMapper\ConfigInterpreter;
 
 /**
  * Interface ExpressionInstantiatorInterface

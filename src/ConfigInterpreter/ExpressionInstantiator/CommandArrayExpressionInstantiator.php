@@ -3,11 +3,11 @@
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator;
 
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\ArrayCommandResolver;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Exception\ExpressionInstantiationFailedExceptionInterface;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\ArrayCommandExpression;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\Exception\ExpressionInstantiationFailedExceptionInterface;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\ExpressionInstantiatorInterface;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\ExpressionInterface;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\SyntaxTreeBuilderInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiatorInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilderInterface;
 
 /**
  * Class CommandArrayExpressionInstantiator
@@ -40,7 +40,7 @@ class CommandArrayExpressionInstantiator implements ExpressionInstantiatorInterf
      * @param SyntaxTreeBuilderInterface $builder
      *
      * @return ExpressionInterface
-     * @throws ExpressionInstantiationFailedExceptionInterface
+     * @throws \SilenceDis\MultiSourceMapper\ConfigInterpreter\Exception\ExpressionInstantiationFailedExceptionInterface
      */
     public function instantiate($value, SyntaxTreeBuilderInterface $builder): ExpressionInterface
     {

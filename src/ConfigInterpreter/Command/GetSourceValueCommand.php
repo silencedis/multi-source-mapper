@@ -2,8 +2,6 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Command;
 
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\Command\CommandInterface;
-
 /**
  * Class GetSourceValueCommand
  *

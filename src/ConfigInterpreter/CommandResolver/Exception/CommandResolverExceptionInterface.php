@@ -1,6 +1,6 @@
 <?php
 
-namespace SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\CommandResolver\Exception;
+namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception;
 
 /**
  * Interface CommandResolverExceptionInterface

@@ -1,6 +1,6 @@
 <?php
 
-namespace SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\Command;
+namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Command;
 
 /**
  * Interface CommandInterface

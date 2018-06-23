@@ -2,7 +2,7 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression;
 
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\CommandResolver\CommandResolverInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolverInterface;
 
 /**
  * `CommandExpression` means that the expression interpretation
@@ -26,7 +26,7 @@ abstract class AbstractCommandExpression extends AbstractExpression
     /**
      * AbstractCommandExpression constructor.
      *
-     * @param CommandResolverInterface $commandResolver
+     * @param \SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolverInterface $commandResolver
      */
     public function __construct(CommandResolverInterface $commandResolver)
     {
@@ -34,7 +34,7 @@ abstract class AbstractCommandExpression extends AbstractExpression
     }
     
     /**
-     * @return CommandResolverInterface
+     * @return \SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolverInterface
      */
     protected function getCommandResolver(): CommandResolverInterface
     {

@@ -2,8 +2,6 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Exception;
 
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\Exception\ExpressionInstantiationFailedExceptionInterface;
-
 /**
  * Class ExpressionInstantiationFailedException
  *

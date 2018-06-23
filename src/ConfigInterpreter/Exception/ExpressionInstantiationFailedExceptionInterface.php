@@ -1,6 +1,6 @@
 <?php
 
-namespace SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\Exception;
+namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Exception;
 
 /**
  * Interface ExpressionInstantiationFailedExceptionInterface

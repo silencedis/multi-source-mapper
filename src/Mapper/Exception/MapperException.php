@@ -2,8 +2,6 @@
 
 namespace SilenceDis\MultiSourceMapper\Mapper\Exception;
 
-use SilenceDis\MultiSourceMapper\MsmInterface\Mapper\Exception\MapperExceptionInterface;
-
 /**
  * Class MapperException
  *

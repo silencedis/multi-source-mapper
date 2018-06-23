@@ -2,10 +2,9 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver;
 
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Command\CommandInterface;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Command\GetSourceValueCommand;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception\CommandResolverException;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\Command\CommandInterface;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\CommandResolver\CommandResolverInterface;
 
 /**
  * Class ArrayCommandResolver

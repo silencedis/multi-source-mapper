@@ -3,9 +3,9 @@
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator;
 
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\PlainValueExpression;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\ExpressionInstantiatorInterface;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\ExpressionInterface;
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\SyntaxTreeBuilderInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiatorInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilderInterface;
 
 /**
  * Class PlainValueExpressionInstantiator

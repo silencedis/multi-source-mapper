@@ -2,8 +2,6 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception;
 
-use SilenceDis\MultiSourceMapper\MsmInterface\ConfigInterpreter\CommandResolver\Exception\CommandResolverExceptionInterface;
-
 /**
  * Class CommandResolverException
  *
