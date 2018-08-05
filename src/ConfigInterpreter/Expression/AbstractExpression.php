@@ -2,11 +2,10 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInterface;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContextInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContextInterface;
 
 /**
- * Class AbstractExpression
+ * Abstract expression that implements ExpressionInteface functionality partially.
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
@@ -14,6 +13,9 @@ abstract class AbstractExpression implements ExpressionInterface
 {
     private $key = null;
     
+    /**
+     * @inheritDoc
+     */
     abstract function interpret(InterpreterContextInterface $context);
     
     public function getKey(): string

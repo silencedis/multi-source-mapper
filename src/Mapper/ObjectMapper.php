@@ -8,7 +8,7 @@ use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\Comman
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\PlainArrayExpressionInstantiator;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\PlainValueExpressionInstantiator;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContext;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilder\SyntaxTreeBuilder;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilder\CompositeExpressionInstantiator;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilderInterface;
 use SilenceDis\MultiSourceMapper\Mapper\Exception\MapperException;
 
@@ -46,7 +46,7 @@ class ObjectMapper implements MapperInterface
     
     private function prepareSyntaxTreeBuilder(): SyntaxTreeBuilderInterface
     {
-        $syntaxTreeBuilder = new SyntaxTreeBuilder();
+        $syntaxTreeBuilder = new CompositeExpressionInstantiator();
         
         $syntaxTreeBuilder->registerInstantiator(new CommandStringExpressionInstantiator());
         $syntaxTreeBuilder->registerInstantiator(new CommandArrayExpressionInstantiator($syntaxTreeBuilder));

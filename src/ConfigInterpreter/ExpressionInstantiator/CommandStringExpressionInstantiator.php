@@ -3,13 +3,13 @@
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator;
 
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\StringCommandResolver;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\ExpressionInterface;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\StringCommandExpression;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiatorInterface;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInterface;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilderInterface;
 
 /**
- * Class CommandStringExpressionInstantiator
+ *
+ * Instantiates {@see \SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\StringCommandExpression}
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */

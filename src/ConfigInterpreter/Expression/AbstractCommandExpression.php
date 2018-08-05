@@ -26,7 +26,7 @@ abstract class AbstractCommandExpression extends AbstractExpression
     /**
      * AbstractCommandExpression constructor.
      *
-     * @param \SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolverInterface $commandResolver
+     * @param CommandResolverInterface $commandResolver
      */
     public function __construct(CommandResolverInterface $commandResolver)
     {
@@ -34,7 +34,7 @@ abstract class AbstractCommandExpression extends AbstractExpression
     }
     
     /**
-     * @return \SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolverInterface
+     * @return CommandResolverInterface
      */
     protected function getCommandResolver(): CommandResolverInterface
     {

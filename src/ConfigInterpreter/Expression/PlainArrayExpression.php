@@ -2,10 +2,10 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContextInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContextInterface;
 
 /**
- * Class PlainArrayExpression
+ * Represents a simple array, each value of which should be interpreted.
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */

@@ -2,8 +2,7 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInterface;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContextInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\ExpressionInterface;
 
 /**
  * Class InterpreterContext

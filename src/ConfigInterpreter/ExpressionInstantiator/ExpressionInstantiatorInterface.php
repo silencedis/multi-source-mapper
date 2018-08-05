@@ -1,9 +1,11 @@
 <?php
 
-namespace SilenceDis\MultiSourceMapper\ConfigInterpreter;
+namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator;
+
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\ExpressionInterface;
 
 /**
- * Instantiates configuration expressions.
+ * Instantiates a configuration expression.
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
@@ -24,7 +26,10 @@ interface ExpressionInstantiatorInterface
      *
      * @param mixed $value A value to create an expression based on it.
      *
-     * @return ExpressionInterface
+     * @return \SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\ExpressionInterface
+     *
+     * @throws CannotInstantiateExpression Throws an exception when instantiator cannot instantiate an expression.
+     * For example when expression doesn't recognize a value but despite that the instantiation was called.
      */
     public function instantiate($value): ExpressionInterface;
 }

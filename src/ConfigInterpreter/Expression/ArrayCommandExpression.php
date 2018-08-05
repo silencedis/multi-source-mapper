@@ -3,11 +3,10 @@
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression;
 
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolverInterface;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception\CommandResolverExceptionInterface;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContextInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContextInterface;
 
 /**
- * Class ArrayCommandExpression
+ * Represents a command expression that is a command, defined in an array format.
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
@@ -31,7 +30,7 @@ class ArrayCommandExpression extends AbstractCommandExpression
     }
     
     /**
-     * @param InterpreterContextInterface $context
+     * @param \SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContextInterface $context
      *
      * @throws \SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception\CommandResolverExceptionInterface
      */

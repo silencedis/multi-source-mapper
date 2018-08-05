@@ -2,13 +2,12 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator;
 
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\ExpressionInterface;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\PlainValueExpression;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiatorInterface;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInterface;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilderInterface;
 
 /**
- * Class PlainValueExpressionInstantiator
+ * Instantiates {@see \SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\PlainValueExpression}
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */

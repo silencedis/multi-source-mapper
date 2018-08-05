@@ -2,10 +2,10 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContextInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContextInterface;
 
 /**
- * Class PlainValueExpression
+ * Represents a plain value. It doesn't change the value.
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
