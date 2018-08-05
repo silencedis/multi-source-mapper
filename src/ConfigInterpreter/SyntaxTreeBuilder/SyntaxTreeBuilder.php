@@ -29,7 +29,7 @@ class SyntaxTreeBuilder implements SyntaxTreeBuilderInterface
     {
         foreach ($this->instantiators as $instantiator) {
             if ($instantiator->recognizes($value)) {
-                return $instantiator->instantiate($value, $this);
+                return $instantiator->instantiate($value);
             }
         }
         
@@ -37,7 +37,15 @@ class SyntaxTreeBuilder implements SyntaxTreeBuilderInterface
     }
     
     /**
-     * @param \SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiatorInterface $instantiator
+     * Adds an expression instantiator to the syntax tree builder.
+     *
+     * The instantiators are used to delegate to one of them creating an expression
+     * that represents a configuration and may be interpreted.
+     *
+     * @internal Instantiators registering might be implemented through a constructor.
+     * But it may be needed to pass the tree builder into an instantiarot before registering it.
+     *
+     * @param ExpressionInstantiatorInterface $instantiator
      */
     public function registerInstantiator(ExpressionInstantiatorInterface $instantiator)
     {

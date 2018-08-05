@@ -19,25 +19,22 @@ use SilenceDis\MultiSourceMapper\Mapper\Exception\MapperException;
  */
 class ObjectMapper implements MapperInterface
 {
-    private $mapConfig;
-    
-    public function __construct($mapConfig)
-    {
-        $this->mapConfig = $mapConfig;
-    }
-    
     /**
-     * @return mixed
+     * @inheritDoc
+     *
      * @throws MapperException
      */
-    public function map()
+    public function map($mapConfig)
     {
+        // todo #improve An interpreter context factory dependency injection may be used to create instance of InterpreterContextInterface
         $context = new InterpreterContext();
         
+        // todo #improve The syntax tree builder may be created outside of the mapper and injected into the mapper just to use it.
         $syntaxTreeBuilder = $this->prepareSyntaxTreeBuilder();
         
         try {
-            $expression = $syntaxTreeBuilder->build($this->mapConfig);
+            // Build the high-level expression.
+            $expression = $syntaxTreeBuilder->build($mapConfig);
         } catch (ExpressionInstantiationFailedExceptionInterface $e) {
             throw new MapperException('Failed to instantiate an expression');
         }
@@ -52,8 +49,8 @@ class ObjectMapper implements MapperInterface
         $syntaxTreeBuilder = new SyntaxTreeBuilder();
         
         $syntaxTreeBuilder->registerInstantiator(new CommandStringExpressionInstantiator());
-        $syntaxTreeBuilder->registerInstantiator(new CommandArrayExpressionInstantiator());
-        $syntaxTreeBuilder->registerInstantiator(new PlainArrayExpressionInstantiator());
+        $syntaxTreeBuilder->registerInstantiator(new CommandArrayExpressionInstantiator($syntaxTreeBuilder));
+        $syntaxTreeBuilder->registerInstantiator(new PlainArrayExpressionInstantiator($syntaxTreeBuilder));
         $syntaxTreeBuilder->registerInstantiator(new PlainValueExpressionInstantiator());
         
         return $syntaxTreeBuilder;

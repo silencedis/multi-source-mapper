@@ -16,6 +16,28 @@ use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilderInterface;
  */
 class CommandArrayExpressionInstantiator implements ExpressionInstantiatorInterface
 {
+    /**
+     * An instance of {@see SyntaxTreeBuilderInterface}.
+     * The instantiator will delegate to it the value analysis and building internal expressions.
+     *
+     * @var SyntaxTreeBuilderInterface
+     */
+    private $syntaxTreeBuilder;
+    
+    /**
+     * CommandArrayExpressionInstantiator constructor.
+     *
+     * @param SyntaxTreeBuilderInterface $syntaxTreeBuilder An instance of {@see SyntaxTreeBuilderInterface}.
+     * The instantiator will delegate to it the value analysis and building internal expressions.
+     */
+    public function __construct(SyntaxTreeBuilderInterface $syntaxTreeBuilder)
+    {
+        $this->syntaxTreeBuilder = $syntaxTreeBuilder;
+    }
+    
+    /**
+     * @inheritDoc
+     */
     public function recognizes($value): bool
     {
         if (!is_array($value)) {
@@ -36,18 +58,14 @@ class CommandArrayExpressionInstantiator implements ExpressionInstantiatorInterf
     }
     
     /**
-     * @param mixed $value
-     * @param SyntaxTreeBuilderInterface $builder
-     *
-     * @return ExpressionInterface
-     * @throws \SilenceDis\MultiSourceMapper\ConfigInterpreter\Exception\ExpressionInstantiationFailedExceptionInterface
+     * @inheritDoc
      */
-    public function instantiate($value, SyntaxTreeBuilderInterface $builder): ExpressionInterface
+    public function instantiate($value): ExpressionInterface
     {
         $rebuildedArray = [];
         
         foreach ($value as $k => $v) {
-            $rebuildedArray[$k] = $builder->build($v);
+            $rebuildedArray[$k] = $this->syntaxTreeBuilder->build($v);
         }
         
         return new ArrayCommandExpression($rebuildedArray, new ArrayCommandResolver());

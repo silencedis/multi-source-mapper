@@ -14,12 +14,18 @@ use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilderInterface;
  */
 class PlainValueExpressionInstantiator implements ExpressionInstantiatorInterface
 {
+    /**
+     * @inheritDoc
+     */
     public function recognizes($value): bool
     {
         return true;
     }
     
-    public function instantiate($value, SyntaxTreeBuilderInterface $builder): ExpressionInterface
+    /**
+     * @inheritDoc
+     */
+    public function instantiate($value): ExpressionInterface
     {
         return new PlainValueExpression($value);
     }

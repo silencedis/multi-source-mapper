@@ -22,10 +22,10 @@ $mapConfig = [
     ],
 ];
 
-$mapper = new ObjectMapper($mapConfig);
+$mapper = new ObjectMapper();
 
 try {
-    $result = $mapper->map();
+    $result = $mapper->map($mapConfig);
 } catch (MapperException $e) {
     echo PHP_EOL . PHP_EOL . $e->getMessage() . PHP_EOL;
     exit;
@@ -33,3 +33,4 @@ try {
 
 echo PHP_EOL . PHP_EOL;
 print_r(json_encode($result, JSON_PRETTY_PRINT));
+echo PHP_EOL;
