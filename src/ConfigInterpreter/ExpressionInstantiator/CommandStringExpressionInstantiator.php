@@ -2,7 +2,7 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\StringCommandResolver;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolver;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\Expression;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\StringCommandExpression;
 
@@ -15,12 +15,26 @@ use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\StringCommandExpre
 final class CommandStringExpressionInstantiator implements ExpressionInstantiator
 {
     /**
+     * @var CommandResolver Resolver of commands
+     */
+    private $commandResolver;
+    
+    /**
+     * CommandStringExpressionInstantiator constructor.
+     *
+     * @param CommandResolver $commandResolver
+     */
+    public function __construct(CommandResolver $commandResolver)
+    {
+        $this->commandResolver = $commandResolver;
+    }
+    
+    /**
      * @inheritDoc
      */
     public function recognizes($value): bool
     {
-        return is_string($value) &&
-               strncmp($value, '!', 1) === 0;
+        return is_string($value) && strncmp($value, '!', 1) === 0;
     }
     
     /**
@@ -28,6 +42,6 @@ final class CommandStringExpressionInstantiator implements ExpressionInstantiato
      */
     public function instantiate($value): Expression
     {
-        return new StringCommandExpression($value, new StringCommandResolver());
+        return new StringCommandExpression($value, $this->commandResolver);
     }
 }

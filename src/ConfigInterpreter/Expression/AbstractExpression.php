@@ -18,7 +18,7 @@ abstract class AbstractExpression implements Expression
      */
     abstract function interpret(InterpreterContext $context);
     
-    public function getKey(): string
+    final public function getKey(): string
     {
         if ($this->key === null) {
             $this->key = uniqid();

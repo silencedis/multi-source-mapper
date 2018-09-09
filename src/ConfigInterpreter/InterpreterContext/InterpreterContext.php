@@ -12,15 +12,19 @@ use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\Expression;
 interface InterpreterContext
 {
     /**
-     * @param Expression $expression
-     * @param $value
+     * Sets new value, that corresponds to an expression
+     *
+     * @param Expression $expression Expression object
+     * @param mixed $value A value, that corresponds to the expression
      *
      * @return mixed
      */
     public function replace(Expression $expression, $value);
     
     /**
-     * @param Expression $expression
+     * Returns a value, corresponding to an expression
+     *
+     * @param Expression $expression Expression, for which a value will be searched.
      *
      * @return mixed
      */

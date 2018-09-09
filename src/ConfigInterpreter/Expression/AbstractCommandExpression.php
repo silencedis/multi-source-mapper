@@ -36,7 +36,7 @@ abstract class AbstractCommandExpression extends AbstractExpression
     /**
      * @return CommandResolver
      */
-    protected function getCommandResolver(): CommandResolver
+    final protected function getCommandResolver(): CommandResolver
     {
         return $this->commandResolver;
     }

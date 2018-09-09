@@ -1,5 +1,13 @@
 <?php
 
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\ArrayCommandResolver;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\StringCommandResolver;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\CommandArrayExpressionInstantiator;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\CommandStringExpressionInstantiator;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\CompositeExpressionInstantiator;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\PlainArrayExpressionInstantiator;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\PlainValueExpressionInstantiator;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\DefaultInterpreterContext;
 use SilenceDis\MultiSourceMapper\Mapper\MappingFailed;
 use SilenceDis\MultiSourceMapper\Mapper\ObjectMapper;
 
@@ -22,7 +30,31 @@ $mapConfig = [
     ],
 ];
 
-$mapper = new ObjectMapper();
+// ------------------
+
+$compositeInstantiator = new CompositeExpressionInstantiator();
+
+$compositeInstantiator->registerInstantiator(
+    new CommandStringExpressionInstantiator(
+        new StringCommandResolver()
+    )
+);
+$compositeInstantiator->registerInstantiator(
+    new CommandArrayExpressionInstantiator(
+        new ArrayCommandResolver(),
+        $compositeInstantiator
+    )
+);
+$compositeInstantiator->registerInstantiator(
+    new PlainArrayExpressionInstantiator(
+        $compositeInstantiator
+    )
+);
+$compositeInstantiator->registerInstantiator(
+    new PlainValueExpressionInstantiator()
+);
+
+$mapper = new ObjectMapper($compositeInstantiator, new DefaultInterpreterContext());
 
 try {
     $result = $mapper->map($mapConfig);
@@ -32,5 +64,6 @@ try {
 }
 
 echo PHP_EOL . PHP_EOL;
+/** @noinspection PhpComposerExtensionStubsInspection */
 print_r(json_encode($result, JSON_PRETTY_PRINT));
 echo PHP_EOL;

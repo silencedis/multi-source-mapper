@@ -18,6 +18,9 @@ final class ArrayCommandResolver implements CommandResolver
      * @param array $commandConfig
      * The parameter value must be an array.
      *
+     * @return Command
+     *
+     * @throws CommandIsNotResolvable
      */
     public function resolve($commandConfig): Command
     {

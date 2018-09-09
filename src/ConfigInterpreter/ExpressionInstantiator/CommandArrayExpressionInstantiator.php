@@ -3,6 +3,7 @@
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator;
 
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\ArrayCommandResolver;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolver;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\ArrayCommandExpression;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\Expression;
 
@@ -15,6 +16,12 @@ use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\Expression;
 final class CommandArrayExpressionInstantiator implements ExpressionInstantiator
 {
     /**
+     * Resolver of array commands
+     *
+     * @var ArrayCommandResolver
+     */
+    private $commandResolver;
+    /**
      * An instance of InstantiatorInterface which is able to perform instantion of items of array that represents a raw expression value.
      * The instantiator will delegate to it the value analysis and building internal expressions.
      *
@@ -25,12 +32,16 @@ final class CommandArrayExpressionInstantiator implements ExpressionInstantiator
     /**
      * CommandArrayExpressionInstantiator constructor.
      *
+     * @param CommandResolver $commandResolver Resolver of commands
      * @param ExpressionInstantiator $auxExpressionInstantiator Another instance of InstantiatorInterface
-     * which is able to perform instantion of items of array that represents a raw expression value.
-     * The instantiator will delegate to it the value analysis and building internal expressions.
+     *      which is able to perform instantion of items of array that represents a raw expression value.
+     *      The instantiator will delegate to it the value analysis and building internal expressions.
      */
-    public function __construct(ExpressionInstantiator $auxExpressionInstantiator)
-    {
+    public function __construct(
+        CommandResolver $commandResolver,
+        ExpressionInstantiator $auxExpressionInstantiator
+    ) {
+        $this->commandResolver = $commandResolver;
         $this->auxExpressionInstantiator = $auxExpressionInstantiator;
     }
     
@@ -70,7 +81,7 @@ final class CommandArrayExpressionInstantiator implements ExpressionInstantiator
             $rebuildedArray[$k] = $this->auxExpressionInstantiator->instantiate($v);
         }
         
-        return new ArrayCommandExpression($rebuildedArray, new ArrayCommandResolver());
+        return new ArrayCommandExpression($rebuildedArray, $this->commandResolver);
     }
     
     /**
