@@ -2,15 +2,15 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolverInterface;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContextInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolver;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContext;
 
 /**
  * Represents a command expression that is a command, defined in an array format.
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-class ArrayCommandExpression extends AbstractCommandExpression
+final class ArrayCommandExpression extends AbstractCommandExpression
 {
     /**
      * @var array
@@ -21,20 +21,18 @@ class ArrayCommandExpression extends AbstractCommandExpression
      * ArrayCommandExpression constructor.
      *
      * @param array $array
-     * @param CommandResolverInterface $commandResolver
+     * @param CommandResolver $commandResolver
      */
-    public function __construct(array $array, CommandResolverInterface $commandResolver)
+    public function __construct(array $array, CommandResolver $commandResolver)
     {
         $this->expressionValue = $array;
         parent::__construct($commandResolver);
     }
     
     /**
-     * @param \SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContextInterface $context
-     *
-     * @throws \SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception\CommandResolverExceptionInterface
+     * @param InterpreterContext $context
      */
-    public function interpret(InterpreterContextInterface $context)
+    public function interpret(InterpreterContext $context)
     {
         $interpretedArray = [];
         
@@ -52,7 +50,6 @@ class ArrayCommandExpression extends AbstractCommandExpression
      * @param array $commandConfig
      *
      * @return mixed
-     * @throws \SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception\CommandResolverExceptionInterface
      */
     private function runCommand(array $commandConfig)
     {

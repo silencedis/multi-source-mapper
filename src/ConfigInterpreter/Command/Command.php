@@ -3,11 +3,11 @@
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Command;
 
 /**
- * Interface CommandInterface
+ * Interface Command
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-interface CommandInterface
+interface Command
 {
     public function execute();
 }

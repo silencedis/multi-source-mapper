@@ -1,10 +1,8 @@
 <?php
 
-namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilder;
+namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\Exception\ExpressionInstantiationFailedException;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\ExpressionInterface;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\ExpressionInstantiatorInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\Expression;
 
 /**
  * Composite instantiator.
@@ -12,12 +10,12 @@ use SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator\Expres
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-class CompositeExpressionInstantiator implements ExpressionInstantiatorInterface
+final class CompositeExpressionInstantiator implements ExpressionInstantiator
 {
     /**
      * Expression instantiators array
      *
-     * @var ExpressionInstantiatorInterface[]
+     * @var ExpressionInstantiator[]
      */
     private $instantiators = [];
     
@@ -30,9 +28,9 @@ class CompositeExpressionInstantiator implements ExpressionInstantiatorInterface
      * @internal Instantiators registering might be implemented through a constructor.
      * But it may be needed to pass the tree builder into an instantiarot before registering it.
      *
-     * @param ExpressionInstantiatorInterface $instantiator
+     * @param ExpressionInstantiator $instantiator
      */
-    public function registerInstantiator(ExpressionInstantiatorInterface $instantiator)
+    public function registerInstantiator(ExpressionInstantiator $instantiator): void
     {
         $this->instantiators[] = $instantiator;
     }
@@ -55,9 +53,9 @@ class CompositeExpressionInstantiator implements ExpressionInstantiatorInterface
     /**
      * @inheritDoc
      *
-     * @throws ExpressionInstantiationFailedException
+     * @throws ExpressionInstantiationFailed
      */
-    public function instantiate($value): ExpressionInterface
+    public function instantiate($value): Expression
     {
         foreach ($this->instantiators as $instantiator) {
             if ($instantiator->recognizes($value)) {
@@ -65,6 +63,6 @@ class CompositeExpressionInstantiator implements ExpressionInstantiatorInterface
             }
         }
         
-        throw new ExpressionInstantiationFailedException();
+        throw new ExpressionInstantiationFailed();
     }
 }

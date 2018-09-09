@@ -3,7 +3,7 @@
 namespace SilenceDis\MultiSourceMapper\Test\ConfigInterpreter\Expression;
 
 use PHPUnit\Framework\TestCase;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolverInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolver;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\AbstractCommandExpression;
 use SilenceDis\PHPUnitMockHelper\MockHelper;
 use SilenceDis\ProtectedMembersAccessor\ProtectedMembersAccessor;
@@ -44,7 +44,7 @@ class AbstractCommandExpressionTest extends TestCase
     public function testGetCommandResolver()
     {
         $commandResolver = $this->mockHelper->mockObject(
-            CommandResolverInterface::class,
+            CommandResolver::class,
             [
                 'mockType' => MockHelper::MOCK_TYPE_ABSTRACT,
             ]

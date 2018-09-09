@@ -2,16 +2,15 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\ExpressionInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\Expression;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\PlainValueExpression;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilderInterface;
 
 /**
  * Instantiates {@see \SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\PlainValueExpression}
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-class PlainValueExpressionInstantiator implements ExpressionInstantiatorInterface
+final class PlainValueExpressionInstantiator implements ExpressionInstantiator
 {
     /**
      * @inheritDoc
@@ -24,7 +23,7 @@ class PlainValueExpressionInstantiator implements ExpressionInstantiatorInterfac
     /**
      * @inheritDoc
      */
-    public function instantiate($value): ExpressionInterface
+    public function instantiate($value): Expression
     {
         return new PlainValueExpression($value);
     }

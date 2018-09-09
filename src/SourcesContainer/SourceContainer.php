@@ -3,26 +3,23 @@
 namespace SilenceDis\MultiSourceMapper\SourcesContainer;
 
 use SilenceDis\MultiSourceMapper\MsmInterface\SourcesContainer\Exception;
-use SilenceDis\MultiSourceMapper\Source\SourceInterface;
+use SilenceDis\MultiSourceMapper\Source\Source;
 
 /**
- * Interface SourceContainerInterface
+ * Interface SourceContainer
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-interface SourceContainerInterface
+interface SourceContainer
 {
     /**
      * Finds a source instance by its identifier and returns it.
      *
      * @param string $id Identifier of the source to look for.
      *
-     * @throws \SilenceDis\MultiSourceMapper\SourcesContainer\Exception\SourceContainerExceptionInterface
-     * @throws \SilenceDis\MultiSourceMapper\SourcesContainer\Exception\NotFoundExceptionInterface
-     *
-     * @return \SilenceDis\MultiSourceMapper\Source\SourceInterface Source
+     * @return \SilenceDis\MultiSourceMapper\Source\Source Source
      */
-    public function get($id): SourceInterface;
+    public function get($id): Source;
     
     /**
      * Returns true if the container can return an entry for the given identifier.

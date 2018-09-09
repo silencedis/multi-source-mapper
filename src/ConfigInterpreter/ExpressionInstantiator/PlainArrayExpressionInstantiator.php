@@ -2,33 +2,32 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\ExpressionInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\Expression;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\PlainArrayExpression;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilderInterface;
 
 /**
  * Instantiates {\SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\PlainValueExpression}
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-class PlainArrayExpressionInstantiator implements ExpressionInstantiatorInterface
+final class PlainArrayExpressionInstantiator implements ExpressionInstantiator
 {
     /**
      * An instance of InstantiatorInterface which is able to perform instantion of items of array that represents a raw expression value.
      * The instantiator will delegate to it the value analysis and building internal expressions.
      *
-     * @var ExpressionInstantiatorInterface
+     * @var ExpressionInstantiator
      */
     private $auxExpressionInstantiator;
     
     /**
      * CommandArrayExpressionInstantiator constructor.
      *
-     * @param ExpressionInstantiatorInterface $auxExpressionInstantiator Another instance of InstantiatorInterface
+     * @param ExpressionInstantiator $auxExpressionInstantiator Another instance of InstantiatorInterface
      * which is able to perform instantion of items of array that represents a raw expression value.
      * The instantiator will delegate to it the value analysis and building internal expressions.
      */
-    public function __construct(ExpressionInstantiatorInterface $auxExpressionInstantiator)
+    public function __construct(ExpressionInstantiator $auxExpressionInstantiator)
     {
         $this->auxExpressionInstantiator = $auxExpressionInstantiator;
     }
@@ -44,7 +43,7 @@ class PlainArrayExpressionInstantiator implements ExpressionInstantiatorInterfac
     /**
      * @inheritDoc
      */
-    public function instantiate($value): ExpressionInterface
+    public function instantiate($value): Expression
     {
         $rebuildedArray = [];
         
@@ -74,7 +73,7 @@ class PlainArrayExpressionInstantiator implements ExpressionInstantiatorInterfac
             print_r($value, true),
             PHP_EOL .
             "You can fix it by injecting through the constructor other instance " .
-            "of ExpressionInstantiatorInterface that is able to instantiate the aforementioned value."
+            "of ExpressionInstantiator that is able to instantiate the aforementioned value."
         );
     }
 }

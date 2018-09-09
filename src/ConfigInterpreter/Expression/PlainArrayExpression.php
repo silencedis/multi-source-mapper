@@ -2,14 +2,14 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContextInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContext;
 
 /**
  * Represents a simple array, each value of which should be interpreted.
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-class PlainArrayExpression extends AbstractExpression
+final class PlainArrayExpression extends AbstractExpression
 {
     private $expressionValue;
     
@@ -18,7 +18,7 @@ class PlainArrayExpression extends AbstractExpression
         $this->expressionValue = $array;
     }
     
-    public function interpret(InterpreterContextInterface $context)
+    public function interpret(InterpreterContext $context)
     {
         $interpretedArray = [];
         

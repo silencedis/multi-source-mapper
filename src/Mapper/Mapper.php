@@ -7,7 +7,7 @@ namespace SilenceDis\MultiSourceMapper\Mapper;
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-interface MapperInterface
+interface Mapper
 {
     /**
      * Performs mapping.

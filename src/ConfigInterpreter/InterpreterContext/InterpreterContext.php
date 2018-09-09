@@ -2,24 +2,27 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\ExpressionInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\Expression;
 
 /**
- * Class InterpreterContext
+ * Represents a required functionality of interpreter context
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-class InterpreterContext implements InterpreterContextInterface
+interface InterpreterContext
 {
-    private $storage = [];
+    /**
+     * @param Expression $expression
+     * @param $value
+     *
+     * @return mixed
+     */
+    public function replace(Expression $expression, $value);
     
-    public function replace(ExpressionInterface $expression, $value)
-    {
-        $this->storage[$expression->getKey()] = $value;
-    }
-    
-    public function lookup(ExpressionInterface $expression)
-    {
-        return $this->storage[$expression->getKey()] ?? null;
-    }
+    /**
+     * @param Expression $expression
+     *
+     * @return mixed
+     */
+    public function lookup(Expression $expression);
 }

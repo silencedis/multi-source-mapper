@@ -1,6 +1,6 @@
 <?php
 
-use SilenceDis\MultiSourceMapper\Mapper\Exception\MapperException;
+use SilenceDis\MultiSourceMapper\Mapper\MappingFailed;
 use SilenceDis\MultiSourceMapper\Mapper\ObjectMapper;
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -26,7 +26,7 @@ $mapper = new ObjectMapper();
 
 try {
     $result = $mapper->map($mapConfig);
-} catch (MapperException $e) {
+} catch (MappingFailed $e) {
     echo PHP_EOL . PHP_EOL . $e->getMessage() . PHP_EOL;
     exit;
 }

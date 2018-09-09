@@ -7,7 +7,7 @@ namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Command;
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-class GetSourceValueCommand implements CommandInterface
+final class GetSourceValueCommand implements Command
 {
     /**
      * @var string

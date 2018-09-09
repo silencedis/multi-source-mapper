@@ -3,11 +3,11 @@
 namespace SilenceDis\MultiSourceMapper\Source;
 
 /**
- * Interface SourceInterface
+ * Interface Source
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-interface SourceInterface
+interface Source
 {
     public function get($query);
 }

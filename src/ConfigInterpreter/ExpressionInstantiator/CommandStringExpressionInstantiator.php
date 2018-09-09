@@ -3,9 +3,8 @@
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\ExpressionInstantiator;
 
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\StringCommandResolver;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\ExpressionInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\Expression;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression\StringCommandExpression;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilderInterface;
 
 /**
  *
@@ -13,7 +12,7 @@ use SilenceDis\MultiSourceMapper\ConfigInterpreter\SyntaxTreeBuilderInterface;
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-class CommandStringExpressionInstantiator implements ExpressionInstantiatorInterface
+final class CommandStringExpressionInstantiator implements ExpressionInstantiator
 {
     /**
      * @inheritDoc
@@ -27,7 +26,7 @@ class CommandStringExpressionInstantiator implements ExpressionInstantiatorInter
     /**
      * @inheritDoc
      */
-    public function instantiate($value): ExpressionInterface
+    public function instantiate($value): Expression
     {
         return new StringCommandExpression($value, new StringCommandResolver());
     }

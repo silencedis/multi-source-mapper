@@ -2,12 +2,12 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolverInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolver;
 
 /**
  * `CommandExpression` means that the expression interpretation
- * will be delegated to another object named "Command" ({@see CommandInterface}).
- * An instance of command object may be returned by {@see CommandResolverInterface}.
+ * will be delegated to another object named "Command" ({@see Command}).
+ * An instance of command object may be returned by {@see CommandResolver}.
  * The CommandResolver must be passed to the constructor.
  * All the child classes must ensure passing the instance of CommandResolver
  * to the constructor of AbstractCommandExpression.
@@ -19,24 +19,24 @@ use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\CommandResolv
 abstract class AbstractCommandExpression extends AbstractExpression
 {
     /**
-     * @var CommandResolverInterface
+     * @var CommandResolver
      */
     private $commandResolver;
     
     /**
      * AbstractCommandExpression constructor.
      *
-     * @param CommandResolverInterface $commandResolver
+     * @param CommandResolver $commandResolver
      */
-    public function __construct(CommandResolverInterface $commandResolver)
+    public function __construct(CommandResolver $commandResolver)
     {
         $this->commandResolver = $commandResolver;
     }
     
     /**
-     * @return CommandResolverInterface
+     * @return CommandResolver
      */
-    protected function getCommandResolver(): CommandResolverInterface
+    protected function getCommandResolver(): CommandResolver
     {
         return $this->commandResolver;
     }

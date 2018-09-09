@@ -2,16 +2,15 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\Command\CommandInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Command\Command;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Command\GetSourceValueCommand;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception\CommandResolverException;
 
 /**
  * Resolver of command based on an array value
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-class ArrayCommandResolver implements CommandResolverInterface
+final class ArrayCommandResolver implements CommandResolver
 {
     /**
      * @inheritdoc
@@ -20,7 +19,7 @@ class ArrayCommandResolver implements CommandResolverInterface
      * The parameter value must be an array.
      *
      */
-    public function resolve($commandConfig): CommandInterface
+    public function resolve($commandConfig): Command
     {
         // todo Review the value verification
         $this->verifyCommandConfig($commandConfig);
@@ -28,32 +27,32 @@ class ArrayCommandResolver implements CommandResolverInterface
         $commandName = $commandConfig['!'] ?? $commandConfig['_command'] ?? null;
         
         if ($commandName === null) {
-            throw new CommandResolverException();
+            throw new CommandIsNotResolvable();
         }
         
         switch ($commandName) {
             case 'get-source-value':
                 return new GetSourceValueCommand($commandConfig['source'], $commandConfig['query']);
             default:
-                throw new CommandResolverException();
+                throw new CommandIsNotResolvable();
         }
     }
     
     /**
      * @param array $commandConfig
      *
-     * @throws CommandResolverException
+     * @throws CommandIsNotResolvable
      */
     private function verifyCommandConfig($commandConfig): void
     {
         if (!is_array($commandConfig)) {
-            throw new CommandResolverException();
+            throw new CommandIsNotResolvable();
         }
         if (!isset($commandConfig['source'])) {
-            throw new CommandResolverException();
+            throw new CommandIsNotResolvable();
         }
         if (!isset($commandConfig['query'])) {
-            throw new CommandResolverException();
+            throw new CommandIsNotResolvable();
         }
     }
 }

@@ -2,14 +2,14 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\Expression;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContextInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\InterpreterContext\InterpreterContext;
 
 /**
  * Represents a plain value. It doesn't change the value.
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-class PlainValueExpression extends AbstractExpression
+final class PlainValueExpression extends AbstractExpression
 {
     private $expressionValue;
     
@@ -18,7 +18,7 @@ class PlainValueExpression extends AbstractExpression
         $this->expressionValue = $value;
     }
     
-    public function interpret(InterpreterContextInterface $context)
+    public function interpret(InterpreterContext $context)
     {
         $context->replace($this, $this->expressionValue);
     }

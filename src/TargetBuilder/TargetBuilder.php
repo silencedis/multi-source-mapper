@@ -3,11 +3,11 @@
 namespace SilenceDis\MultiSourceMapper\TargetBuilder;
 
 /**
- * Interface TargetBuilderInterface
+ * Interface TargetBuilder
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-interface TargetBuilderInterface
+interface TargetBuilder
 {
     public function setProperty(string $property, $value);
     

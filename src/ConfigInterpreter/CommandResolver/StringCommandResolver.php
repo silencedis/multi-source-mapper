@@ -2,16 +2,15 @@
 
 namespace SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver;
 
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\Command\CommandInterface;
+use SilenceDis\MultiSourceMapper\ConfigInterpreter\Command\Command;
 use SilenceDis\MultiSourceMapper\ConfigInterpreter\Command\GetSourceValueCommand;
-use SilenceDis\MultiSourceMapper\ConfigInterpreter\CommandResolver\Exception\CommandResolverException;
 
 /**
  * Resolver of command based on a string value
  *
  * @author Yurii Slobodeniuk <silencedis@gmail.com>
  */
-class StringCommandResolver implements CommandResolverInterface
+final class StringCommandResolver implements CommandResolver
 {
     /**
      * @param string $commandConfig A raw command configuration.
@@ -21,10 +20,10 @@ class StringCommandResolver implements CommandResolverInterface
      * `<command-name>` is an idendifier of command.
      * `<command-body>` is a string that may be considered as a configuration of command.
      *
-     * @return CommandInterface
-     * @throws CommandResolverException
+     * @return Command
+     * @throws CommandIsNotResolvable
      */
-    public function resolve($commandConfig): CommandInterface
+    public function resolve($commandConfig): Command
     {
         $this->verifyCommandConfig($commandConfig);
         
@@ -41,7 +40,7 @@ class StringCommandResolver implements CommandResolverInterface
                 
                 return new GetSourceValueCommand($sourceName, $query);
             default:
-                throw new CommandResolverException();
+                throw new CommandIsNotResolvable();
         }
     }
     
@@ -50,16 +49,16 @@ class StringCommandResolver implements CommandResolverInterface
      *
      * @param mixed $commandConfig Configuration string to verify
      *
-     * @throws CommandResolverException The exception is thrown if the config string isn't valid.
+     * @throws CommandIsNotResolvable The exception is thrown if the config string isn't valid.
      */
     private function verifyCommandConfig($commandConfig)
     {
         if (!is_string($commandConfig)) {
-            throw new CommandResolverException('The command config must be a string.');
+            throw new CommandIsNotResolvable('The command config must be a string.');
         }
         
         if (substr($commandConfig, 0, 1) != '!') {
-            throw new CommandResolverException('The command config string must begin from the explanation mark.');
+            throw new CommandIsNotResolvable('The command config string must begin from the explanation mark.');
         }
     }
 }
